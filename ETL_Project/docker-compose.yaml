@@ -1,0 +1,186 @@
+x-spark-common: &spark-common
+  image: apache/spark:3.5.3
+  networks:
+    - bigdata-net
+  volumes:
+    - ./shared_workspace:/opt/workspace
+
+services:
+
+  # ALMACENAMIENTO: HDFS (Hadoop 3.4.2 Oficial)
+  namenode:
+    image: apache/hadoop:3.4.2
+    container_name: namenode
+    hostname: namenode
+    user: root
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    command: >
+      /bin/bash -c "
+      echo '<configuration><property><name>fs.defaultFS</name><value>hdfs://namenode:9000</value></property></configuration>' > /opt/hadoop/etc/hadoop/core-site.xml &&
+      echo '<configuration><property><name>dfs.namenode.name.dir</name><value>file:///hadoop/dfs/name</value></property><property><name>dfs.replication</name><value>1</value></property><property><name>dfs.permissions.enabled</name><value>false</value></property></configuration>' > /opt/hadoop/etc/hadoop/hdfs-site.xml &&
+      if [ ! -f /hadoop/dfs/name/current/VERSION ]; then /opt/hadoop/bin/hdfs namenode -format TransportCluster -force -nonInteractive; fi &&
+      /opt/hadoop/bin/hdfs namenode"
+    networks:
+      - bigdata-net
+    volumes:
+      - hdfs_namenode:/hadoop/dfs/name
+      - ./shared_workspace:/opt/workspace
+
+  datanode:
+    image: apache/hadoop:3.4.2
+    container_name: datanode
+    user: root
+    depends_on:
+      - namenode
+    command: >
+      /bin/bash -c "
+      echo '<configuration><property><name>fs.defaultFS</name><value>hdfs://namenode:9000</value></property></configuration>' > /opt/hadoop/etc/hadoop/core-site.xml &&
+      echo '<configuration><property><name>dfs.datanode.data.dir</name><value>file:///hadoop/dfs/data</value></property></configuration>' > /opt/hadoop/etc/hadoop/hdfs-site.xml &&
+      /opt/hadoop/bin/hdfs datanode"
+    networks:
+      - bigdata-net
+    volumes:
+      - hdfs_datanode:/hadoop/dfs/data
+
+  # GESTIÓN DE RECURSOS: YARN (Hadoop 3.4.2 Oficial)
+  resourcemanager:
+    image: apache/hadoop:3.4.2
+    container_name: resourcemanager
+    hostname: resourcemanager
+    user: root
+    ports:
+      - "8088:8088"
+    depends_on:
+      - namenode
+      - datanode
+    command: >
+      /bin/bash -c "
+      echo '<configuration><property><name>fs.defaultFS</name><value>hdfs://namenode:9000</value></property></configuration>' > /opt/hadoop/etc/hadoop/core-site.xml &&
+      echo '<configuration><property><name>yarn.resourcemanager.hostname</name><value>resourcemanager</value></property></configuration>' > /opt/hadoop/etc/hadoop/yarn-site.xml &&
+      /opt/hadoop/bin/yarn resourcemanager"
+    networks:
+      - bigdata-net
+
+  nodemanager:
+    image: apache/hadoop:3.4.2
+    container_name: nodemanager
+    user: root
+    depends_on:
+      - resourcemanager
+    command: >
+      /bin/bash -c "
+      echo '<configuration><property><name>fs.defaultFS</name><value>hdfs://namenode:9000</value></property></configuration>' > /opt/hadoop/etc/hadoop/core-site.xml &&
+      echo '<configuration><property><name>yarn.resourcemanager.hostname</name><value>resourcemanager</value></property></configuration>' > /opt/hadoop/etc/hadoop/yarn-site.xml &&
+      /opt/hadoop/bin/yarn nodemanager"
+    networks:
+      - bigdata-net
+
+  # INGESTA: Kafka (KRaft mode) & NiFi
+  kafka:
+    image: apache/kafka:3.9.0
+    container_name: kafka-broker
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-broker:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka-broker:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      CLUSTER_ID: "5L6g3nShT-eMCtK--X86sw"
+    ports:
+      - "9092:9092"
+    networks:
+      - bigdata-net
+    volumes:
+      - kafka_data:/tmp/kraft-combined-logs
+
+  nifi:
+    image: apache/nifi:2.6.0
+    container_name: nifi-ingestion
+    ports:
+      - "8443:8443"
+    environment:
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=SuperSecurePassword123!
+    depends_on:
+      - namenode
+    networks:
+      - bigdata-net
+    volumes:
+      - nifi_conf:/opt/nifi/nifi-current/conf
+      - nifi_database:/opt/nifi/nifi-current/database_repository
+      - nifi_flowfile:/opt/nifi/nifi-current/flowfile_repository
+      - nifi_content:/opt/nifi/nifi-current/content_repository
+      - nifi_provenance:/opt/nifi/nifi-current/provenance_repository
+      - nifi_state:/opt/nifi/nifi-current/state
+      - ./shared_workspace:/opt/workspace
+
+  # PROCESAMIENTO: Spark
+  spark-master:
+    <<: *spark-common
+    container_name: spark-master
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master"]
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+
+  spark-worker:
+    <<: *spark-common
+    container_name: spark-worker
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
+    depends_on:
+      - spark-master
+
+  # ALMACENAMIENTO: Cassandra
+  cassandra:
+    image: cassandra:5.0
+    container_name: cassandra-db
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_CLUSTER_NAME=TransportCluster
+      - JVM_OPTS=-Xms1G -Xmx1G
+    networks:
+      - bigdata-net
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+
+  # ORQUESTACIÓN: Airflow (Standalone)
+  airflow:
+    image: apache/airflow:2.10.0
+    container_name: airflow-web
+    ports:
+      - "8081:8080"
+    environment:
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    command: standalone
+    networks:
+      - bigdata-net
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - airflow_data:/opt/airflow
+
+networks:
+  bigdata-net:
+    driver: bridge
+
+volumes:
+  hdfs_namenode:
+  hdfs_datanode:
+  kafka_data:
+  nifi_conf:
+  nifi_database:
+  nifi_flowfile:
+  nifi_content:
+  nifi_provenance:
+  nifi_state:
+  cassandra_data:
+  airflow_data:
