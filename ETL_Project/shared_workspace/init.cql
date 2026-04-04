@@ -18,3 +18,11 @@ CREATE TABLE IF NOT EXISTS trafico_bot (
     riesgo_historico text, 
     PRIMARY KEY ((user_id), timestamp)
 ) WITH CLUSTERING ORDER BY (timestamp DESC);
+
+CREATE TABLE IF NOT EXISTS metricas_ventanas (
+    window_start timestamp,
+    window_end timestamp,
+    total_visitas int,
+    media_paginas double,
+    PRIMARY KEY (window_start)
+);

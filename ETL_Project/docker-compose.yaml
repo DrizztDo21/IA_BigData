@@ -254,7 +254,7 @@ services:
   # ==========================================
 
   dashboard:
-    image: python:3.11-slim
+    image: python:3.12-slim
     container_name: dashboard-fraude
     depends_on:
       - cassandra-db

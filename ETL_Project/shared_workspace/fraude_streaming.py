@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, from_json, when, broadcast
+from pyspark.sql.functions import col, from_json, when, broadcast, to_timestamp, window, count, avg
 from pyspark.sql.types import StructType, StringType, DoubleType, BooleanType, IntegerType
 
 # 1. Inicializamos Spark
@@ -108,6 +108,37 @@ stream_visitas = df_bots.select("user_id", "ip", "pages_visited", "timestamp", "
     .option("keyspace", "ecommerce") \
     .option("table", "trafico_bot") \
     .option("checkpointLocation", "/tmp/checkpoints_visitas") \
+    .start()
+
+
+
+# ==========================================
+# 5. STREAMING 3: CÁLCULO DE VENTANAS (1 min)
+# ==========================================
+df_visitas_tiempo = df_visitas.withColumn("event_time", to_timestamp(col("timestamp")))
+
+df_ventanas = df_visitas_tiempo \
+    .withWatermark("event_time", "1 minute") \
+    .groupBy(window(col("event_time"), "1 minute")) \
+    .agg(
+        count("*").alias("total_visitas"),
+        avg("pages_visited").alias("media_paginas")
+    ) \
+    .select(
+        col("window.start").alias("window_start"),
+        col("window.end").alias("window_end"),
+        col("total_visitas").cast("int"),
+        col("media_paginas").cast("double")
+    )
+
+stream_ventanas = df_ventanas \
+    .writeStream \
+    .trigger(processingTime="10 seconds") \
+    .outputMode("append") \
+    .format("org.apache.spark.sql.cassandra") \
+    .option("keyspace", "ecommerce") \
+    .option("table", "metricas_ventanas") \
+    .option("checkpointLocation", "/tmp/checkpoints_ventanas") \
     .start()
 
 print("Motores de Visitas y Pagos INICIADOS...")

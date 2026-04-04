@@ -188,7 +188,18 @@ if 'tx_vistas' not in st.session_state:
 
 with tab_realtime:
 
-    rows = session.execute("SELECT * FROM alertas_fraude")
+    if 'tabla_ventanas_existe' not in st.session_state:
+        st.session_state.tabla_ventanas_existe = True
+
+    future_alertas = session.execute_async("SELECT * FROM alertas_fraude")
+    future_ventanas = None
+    if st.session_state.tabla_ventanas_existe:
+        try:
+            future_ventanas = session.execute_async("SELECT window_start, total_visitas FROM metricas_ventanas LIMIT 100")
+        except Exception:
+            st.session_state.tabla_ventanas_existe = False
+
+    rows = future_alertas.result()
     df = pd.DataFrame(list(rows))
     
     if not df.empty:
@@ -221,6 +232,23 @@ with tab_realtime:
                     use_container_width=True, 
                     hide_index=True
                 )
+                
+        st.markdown("---")
+        st.subheader("⏱️ Carga del Servidor (Ventanas de 1 minuto)")
+        if st.session_state.tabla_ventanas_existe and future_ventanas is not None:
+            try:
+                rows_ventanas = future_ventanas.result()
+                df_ventanas = pd.DataFrame(list(rows_ventanas))
+                if not df_ventanas.empty:
+                    df_ventanas = df_ventanas.sort_values(by="window_start", ascending=True)
+                    st.line_chart(df_ventanas.set_index("window_start")["total_visitas"], color="#11ff4b")
+                else:
+                    st.info("Recopilando eventos para completar la primera ventana de 1 minuto...")
+            except Exception:
+                st.session_state.tabla_ventanas_existe = False
+                st.info("La tabla de ventanas de 1 minuto aún no se ha inicializado en Cassandra.")
+        else:
+            st.info("La tabla de ventanas de 1 minuto aún no se ha inicializado en Cassandra.")
     else:
         st.warning("Esperando datos en streaming desde Spark...")
 
