@@ -1,0 +1,1 @@
+docker exec -it airflow-web spark-submit --master yarn --deploy-mode cluster --num-executors 1 --executor-cores 1 --executor-memory 512m --driver-memory 512m --conf spark.yarn.am.memory=512m --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.3,com.datastax.spark:spark-cassandra-connector_2.12:3.5.0 /opt/workspace/fraude_streaming.py

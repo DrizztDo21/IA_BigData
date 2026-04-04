@@ -1,0 +1,8 @@
+airflow/logs/
+shared_workspace/*.log
+
+.venv
+.DS_Store
+__pycache__/
+
+shared_workspace/datos_prueba/

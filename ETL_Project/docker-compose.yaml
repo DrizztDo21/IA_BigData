@@ -1,10 +1,3 @@
-x-spark-common: &spark-common
-  image: apache/spark:3.5.3
-  networks:
-    - bigdata-net
-  volumes:
-    - ./shared_workspace:/opt/workspace
-
 services:
 
   # ALMACENAMIENTO: HDFS (Hadoop 3.4.2 Oficial)
@@ -46,9 +39,10 @@ services:
 
   # GESTIÓN DE RECURSOS: YARN (Hadoop 3.4.2 Oficial)
   resourcemanager:
-    image: apache/hadoop:3.4.2
+    build:
+      context: .
+      dockerfile: Dockerfile.hadoop
     container_name: resourcemanager
-    hostname: resourcemanager
     user: root
     ports:
       - "8088:8088"
@@ -59,23 +53,65 @@ services:
       /bin/bash -c "
       echo '<configuration><property><name>fs.defaultFS</name><value>hdfs://namenode:9000</value></property></configuration>' > /opt/hadoop/etc/hadoop/core-site.xml &&
       echo '<configuration><property><name>yarn.resourcemanager.hostname</name><value>resourcemanager</value></property></configuration>' > /opt/hadoop/etc/hadoop/yarn-site.xml &&
+      sed -i 's|</configuration>|<property><name>yarn.scheduler.capacity.maximum-am-resource-percent</name><value>1.0</value></property></configuration>|g' /opt/hadoop/etc/hadoop/capacity-scheduler.xml &&
       /opt/hadoop/bin/yarn resourcemanager"
     networks:
       - bigdata-net
+    volumes:
+      - ./shared_workspace:/opt/workspace
 
-  nodemanager:
-    image: apache/hadoop:3.4.2
-    container_name: nodemanager
+  nodemanager-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.hadoop
+    container_name: nodemanager-1
     user: root
     depends_on:
       - resourcemanager
     command: >
       /bin/bash -c "
       echo '<configuration><property><name>fs.defaultFS</name><value>hdfs://namenode:9000</value></property></configuration>' > /opt/hadoop/etc/hadoop/core-site.xml &&
-      echo '<configuration><property><name>yarn.resourcemanager.hostname</name><value>resourcemanager</value></property></configuration>' > /opt/hadoop/etc/hadoop/yarn-site.xml &&
+      echo '<configuration>
+      <property><name>yarn.resourcemanager.hostname</name><value>resourcemanager</value></property>
+      <property><name>yarn.nodemanager.resource.memory-mb</name><value>4092</value></property>
+      <property><name>yarn.scheduler.maximum-allocation-mb</name><value>4092</value></property>
+      <property><name>yarn.nodemanager.resource.cpu-vcores</name><value>4</value></property>
+      <property><name>yarn.nodemanager.vmem-check-enabled</name><value>false</value></property>
+      </configuration>' > /opt/hadoop/etc/hadoop/yarn-site.xml &&
       /opt/hadoop/bin/yarn nodemanager"
     networks:
       - bigdata-net
+    ports:
+      - "8042:8042"
+    volumes:
+      - ./shared_workspace:/opt/workspace
+    
+
+  nodemanager-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.hadoop
+    container_name: nodemanager-2
+    user: root
+    depends_on:
+      - resourcemanager
+    command: >
+      /bin/bash -c "
+      echo '<configuration><property><name>fs.defaultFS</name><value>hdfs://namenode:9000</value></property></configuration>' > /opt/hadoop/etc/hadoop/core-site.xml &&
+      echo '<configuration>
+      <property><name>yarn.resourcemanager.hostname</name><value>resourcemanager</value></property>
+      <property><name>yarn.nodemanager.resource.memory-mb</name><value>4092</value></property>
+      <property><name>yarn.scheduler.maximum-allocation-mb</name><value>4092</value></property>
+      <property><name>yarn.nodemanager.resource.cpu-vcores</name><value>4</value></property>
+      <property><name>yarn.nodemanager.vmem-check-enabled</name><value>false</value></property>
+      </configuration>' > /opt/hadoop/etc/hadoop/yarn-site.xml &&
+      /opt/hadoop/bin/yarn nodemanager"
+    networks:
+      - bigdata-net
+    ports:
+      - "8043:8042"
+    volumes:
+      - ./shared_workspace:/opt/workspace
 
   # INGESTA: Kafka (KRaft mode) & NiFi
   kafka:
@@ -101,8 +137,10 @@ services:
       - kafka_data:/tmp/kraft-combined-logs
 
   nifi:
-    image: apache/nifi:2.6.0
-    container_name: nifi-ingestion
+    build: 
+      context: .
+      dockerfile: Dockerfile.nifi
+    container_name: nifi
     ports:
       - "8443:8443"
     environment:
@@ -121,24 +159,9 @@ services:
       - nifi_state:/opt/nifi/nifi-current/state
       - ./shared_workspace:/opt/workspace
 
-  # PROCESAMIENTO: Spark
-  spark-master:
-    <<: *spark-common
-    container_name: spark-master
-    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master"]
-    ports:
-      - "8080:8080"
-      - "7077:7077"
-
-  spark-worker:
-    <<: *spark-common
-    container_name: spark-worker
-    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
-    depends_on:
-      - spark-master
-
+ 
   # ALMACENAMIENTO: Cassandra
-  cassandra:
+  cassandra-db:
     image: cassandra:5.0
     container_name: cassandra-db
     ports:
@@ -153,12 +176,15 @@ services:
 
   # ORQUESTACIÓN: Airflow (Standalone)
   airflow:
-    image: apache/airflow:2.10.0
+    build:
+      context: .
+      dockerfile: Dockerfile.airflow
     container_name: airflow-web
     ports:
       - "8081:8080"
     environment:
       - AIRFLOW__CORE__LOAD_EXAMPLES=False
+      - HADOOP_CONF_DIR=/opt/workspace
     command: standalone
     networks:
       - bigdata-net
@@ -167,6 +193,82 @@ services:
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
       - airflow_data:/opt/airflow
+      - ./shared_workspace:/opt/workspace
+
+  # ==========================================
+  # INICIALIZADORES AUTOMÁTICOS
+  # ==========================================
+  
+  kafka-init:
+    image: apache/kafka:3.9.0
+    container_name: kafka-init
+    depends_on:
+      - kafka
+    networks:
+      - bigdata-net
+    command: >
+      bash -c "
+      echo 'Esperando a que Kafka levante (20 segundos)...'
+      sleep 20
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-broker:9092 --create --topic datos_visitas --partitions 3 --replication-factor 1 --if-not-exists
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-broker:9092 --create --topic datos_pagos --partitions 1 --replication-factor 1 --if-not-exists
+      echo '¡Topics de Kafka creados con éxito!'
+      "
+
+  cassandra-init:
+    image: cassandra:5.0
+    container_name: cassandra-init
+    depends_on:
+      - cassandra-db
+    networks:
+      - bigdata-net
+    volumes:
+      - ./shared_workspace:/opt/workspace
+    command: >
+      bash -c "
+      echo 'Esperando a que Cassandra despierte...';
+      sleep 45;
+      cqlsh cassandra-db -f /opt/workspace/init.cql;
+      echo 'Base de datos instanciada correctamente.';
+      "
+
+
+  # ==========================================
+  # API REST (FastAPI)
+  # ==========================================
+  market-api:
+    image: python:3.12-slim
+    container_name: market-api
+    working_dir: /app
+    volumes:
+      - ./api:/app
+    networks:
+      - bigdata-net
+    command: >
+      bash -c "pip install fastapi uvicorn sse-starlette && uvicorn api_market:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "8005:8000"
+
+  # ==========================================
+  # Dashboard (Streamlit)
+  # ==========================================
+
+  dashboard:
+    image: python:3.11-slim
+    container_name: dashboard-fraude
+    depends_on:
+      - cassandra-db
+    networks:
+      - bigdata-net
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./shared_workspace:/opt/workspace
+    command: >
+      bash -c "
+      pip install streamlit cassandra-driver pandas pyvis networkx &&
+      streamlit run /opt/workspace/dashboard.py --server.port=8501 --server.address=0.0.0.0
+      "
 
 networks:
   bigdata-net:
