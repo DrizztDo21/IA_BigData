@@ -1,0 +1,82 @@
+Política Corporativa de Gastos de Viaje y Movilidad Representativa
+
+Entidad: Acme Corp.
+
+Departamento: Finanzas / Tesorería
+
+Versión: 1.0 (Mayo 2026)
+
+Clasificación: Confidencial / Uso Interno
+
+    Introducción y Propósito
+
+La presente política establece las directrices para la gestión, autorización y reembolso de los gastos derivados de desplazamientos profesionales en Acme Corp.
+El objetivo es asegurar un uso eficiente de los recursos, garantizando que el empleado mantenga un estándar de confort y seguridad adecuado, sin comprometer la integridad financiera de la organización.
+Todo gasto de viaje debe regirse por el principio de "Austeridad Responsable": debe ser razonable, necesario y estar directamente relacionado con los objetivos de negocio de la compañía.
+
+    Procedimiento de Autorización (Pre-Viaje)
+
+Ningún gasto será reembolsado ni se considerará profesional si no cuenta con una aprobación previa en la plataforma interna AcmeTravel.
+Los plazos de solicitud son los siguientes:
+
+Viajes Nacionales: Mínimo de quince (15) días naturales de antelación.
+
+Viajes Internacionales: Mínimo de treinta (30) días naturales de antelación.
+El mánager directo debe validar que la reunión o evento no puede ser sustituido por una videoconferencia bajo los estándares de IT de Acme Corp.
+
+    Categorías de Gastos y Límites Diarios
+
+Acme Corp establece una estructura de dietas y topes máximos para evitar desviaciones presupuestarias.
+
+3.1. Alojamiento y Manutención
+
+Concepto | Límite Máximo | Observaciones
+Alojamiento | 150.00 € / noche | Incluye desayuno. Reserva obligatoria vía AcmeTravel.
+Manutención (Dieta completa) | 45.00 € / día | Excluye bebidas alcohólicas y gastos de ocio.
+Media Dieta | 22.50 € | Aplicable en días de salida o regreso según horario.
+
+3.2. Transporte y Movilidad
+
+Clase de Viaje: Se utilizará siempre la Tarifa Turista o Eco. El uso de Business Class requiere aprobación del Comité de Dirección.
+Vehículo Particular: Se compensará a razón de 0.23 € / km, previa autorización de RRHH y entrega de informe de kilometraje.
+Taxis y VTC: Se priorizará el uso de las cuentas corporativas de Uber/Cabify vinculadas al perfil de empleado de Acme Corp.
+
+    Ciberseguridad y Protección de Datos en Movilidad
+
+El empleado es responsable de la integridad de los activos digitales durante el desplazamiento.
+Es obligatorio el uso de la VPN de Acme Corp en cualquier red fuera de la oficina, especialmente en aeropuertos y hoteles.
+Queda prohibido el uso de estaciones de carga USB públicas ("Juice Jacking") sin el uso de bloqueadores de datos proporcionados por IT.
+
+    Reglas de Justificación y Reembolso
+
+Plazo de Entrega: Todas las liquidaciones deben subirse a la App AcmeExpense en un máximo de cinco (5) días hábiles tras el fin del viaje.
+Facturación: No se aceptarán tickets simples para importes superiores a 50.00 €; el empleado debe solicitar factura nominal a nombre de Acme Corp.
+Digitalización: La imagen del ticket debe ser nítida; la pérdida del justificante físico o digital invalidará el derecho al reembolso.
+
+    Código de Conducta y Penalizaciones
+
+El uso indebido de los fondos de la empresa será tratado con la severidad estipulada en el convenio colectivo.
+Se consideran Faltas Graves:
+
+    Fraccionamiento de facturas para evitar los límites de la política.
+
+    Pago de gastos de terceros ajenos a la compañía (familiares o acompañantes).
+
+    Inclusión de gastos de carácter personal (mini-bar, lavandería en estancias < 3 días).
+
+Sanciones:
+
+    Grave: Suspensión de la tarjeta corporativa por 6 meses y reintegro inmediato del gasto.
+
+    Muy Grave: Despido disciplinario y posibles acciones legales por apropiación indebida.
+
+    Cláusula de Sostenibilidad y Bienestar
+
+Acme Corp incentiva la reducción de la huella de carbono. Los empleados que opten por el tren de alta velocidad en trayectos donde exista alternativa al avión recibirán un Bono Eco-Viajero de 50.00 € trimestrales.
+Tras viajes internacionales de más de 8 horas de vuelo, el empleado tendrá derecho a doce (12) horas de "descanso compensatorio" antes de reincorporarse a su jornada habitual.
+
+    Aceptación
+
+Al solicitar un viaje a través de AcmeTravel, el empleado confirma que conoce y acepta los términos de esta Política de Gastos.
+
+Fdo: Dirección Financiera / Recursos Humanos Acme Corp. "Viajar con propósito, gastar con responsabilidad."

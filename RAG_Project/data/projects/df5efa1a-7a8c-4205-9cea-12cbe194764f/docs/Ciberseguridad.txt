@@ -1,0 +1,90 @@
+Política Corporativa de Seguridad de la Información y Ciberseguridad
+
+Entidad: Acme Corp.
+
+Departamento: IT / Seguridad de la Información (CISO)
+
+Versión: 4.0 (Abril 2026)
+
+Clasificación: Confidencial / Uso Interno
+1. Introducción y Propósito
+
+En un entorno digital en constante evolución, los activos de información de Acme Corp son el recurso más valioso de la compañía. Esta política define las directrices obligatorias para proteger la confidencialidad, integridad y disponibilidad de los datos frente a amenazas internas y externas, garantizando el cumplimiento de las normativas internacionales de protección de datos (GDPR y similares).
+2. Gestión de Identidades y Accesos
+
+El acceso a los sistemas de Acme Corp se rige por el principio de "Mínimo Privilegio": cada usuario tendrá acceso únicamente a la información estrictamente necesaria para sus funciones.
+2.1. Estándares de Autenticación
+
+Es obligatorio el uso de Autenticación de Doble Factor (2FA) en todas las aplicaciones corporativas.
+Elemento	Requisito Obligatorio
+Longitud de Contraseña	Mínimo 16 caracteres alfanuméricos.
+Complejidad	Mayúsculas, minúsculas, números y símbolos especiales.
+Rotación	Cambio obligatorio cada 90 días naturales.
+Bloqueo	Suspensión de cuenta tras 3 intentos fallidos.
+3. Uso de Dispositivos y Perimetraje
+
+Queda estrictamente prohibido el uso de dispositivos personales (BYOD) para el acceso a datos sensibles sin la previa instalación de los certificados de seguridad de Acme Corp.
+3.1. Reglas de "Escritorio Limpio"
+
+    Bloqueo Automático: Los equipos deben estar configurados para bloquearse tras 3 minutos de inactividad.
+
+    Cifrado: Todos los discos duros y unidades extraíbles autorizadas deben utilizar cifrado de grado militar (AES-256).
+
+    Almacenamiento: Está prohibido guardar archivos locales en el escritorio; se debe utilizar exclusivamente el almacenamiento en la nube corporativa (AcmeCloud).
+
+4. Comunicación y Manejo de Datos
+
+La fuga de información, ya sea accidental o intencionada, es el mayor riesgo para la continuidad de Acme Corp.
+4.1. Clasificación de la Información
+Nivel	Descripción	Protocolo de Manejo
+Público	Información para marketing o prensa.	Difusión libre.
+Interno	Memorándums, políticas generales.	No compartir fuera de @https://www.google.com/search?q=acmecorp.com.
+Confidencial	Datos de clientes, salarios, código fuente.	Cifrado obligatorio y acceso restringido.
+Crítico	Estrategia de fusión, patentes, claves raíz.	Solo Dirección y CISO; trazabilidad total.
+5. Beneficios y Herramientas de Seguridad
+
+Acme Corp proporciona los recursos necesarios para facilitar el cumplimiento de estas normas sin mermar la productividad.
+
+    Gestor de Contraseñas Premium: Licencia corporativa para el uso de un gestor de claves (AcmePass) tanto para uso profesional como personal.
+
+    Bono de Ciber-Higiene: Reconocimiento anual de 150 € para aquellos empleados que reporten vulnerabilidades reales o intentos de phishing a través del sistema "Ojo de Halcón".
+
+    VPN de Alta Velocidad: Conexión segura ilimitada para uso en cualquier red fuera de la oficina.
+
+6. Régimen de Penalizaciones y Faltas
+
+La ciberseguridad es responsabilidad de todos. Las brechas causadas por negligencia serán tratadas con severidad.
+6.1. Clasificación de Infracciones Graves
+
+    Ingeniería Social: Ignorar los protocolos de verificación y facilitar datos a terceros no identificados.
+
+    Software No Autorizado: Instalar aplicaciones, extensiones de navegador o juegos no validados por IT.
+
+    Shadow IT: Utilizar servicios de almacenamiento o mensajería externos (Dropbox personal, WhatsApp web para datos de clientes) para fines laborales.
+
+6.2. Cuadro de Sanciones Disciplinarias
+
+    "Un solo clic erróneo puede comprometer el futuro de todos en Acme Corp."
+
+Gravedad	Acción Negligente	Sanción
+Leve	Dejar el equipo desbloqueado en zona pública.	Amonestación y curso de re-capacitación.
+Grave	Desactivar el antivirus o software de monitoreo.	Suspensión de 5 días de empleo y sueldo.
+Muy Grave	Extracción de bases de datos o pérdida de equipo no cifrado.	Despido disciplinario y acciones legales.
+7. Protocolo de Respuesta ante Incidentes
+
+En caso de sospecha de compromiso (virus, pérdida de dispositivo, correo sospechoso), el empleado debe:
+
+    Desconectar: Apagar el Wi-Fi o desconectar el cable de red inmediatamente.
+
+    Reportar: Llamar a la línea de emergencia de IT (Ext. 911) en menos de 15 minutos.
+
+    No Intervenir: No intentar limpiar el equipo de forma autónoma.
+
+8. Auditoría y Monitorización
+
+Acme Corp se reserva el derecho de auditar el tráfico de red y el uso de los equipos corporativos para garantizar la seguridad de la red, respetando siempre la legislación vigente sobre privacidad. Se realizarán simulacros periódicos de Phishing para evaluar la resiliencia del personal.
+9. Formación Continua
+
+Es obligatorio completar los módulos mensuales de la "Academia de Ciberseguridad Acme". La no finalización de estos módulos impedirá la solicitud de vacaciones o promociones internas.
+
+Fdo: Chief Information Security Officer (CISO) Acme Corp. "Protegiendo el mañana, hoy."

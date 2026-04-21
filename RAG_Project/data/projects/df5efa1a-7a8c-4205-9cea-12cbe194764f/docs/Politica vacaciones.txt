@@ -1,0 +1,102 @@
+Política Corporativa de Gestión de Vacaciones y Descanso Retribuido
+
+Entidad: Acme Corp.
+
+Departamento: Recursos Humanos
+
+Versión: 3.1 (Mayo 2026)
+
+Clasificación: Confidencial / Uso Interno
+1. Introducción y Propósito
+
+En Acme Corp, reconocemos que el descanso es un pilar fundamental para la salud mental, la creatividad y la sostenibilidad del rendimiento a largo plazo. Esta política establece las normas, procedimientos y plazos que rigen el disfrute de las vacaciones anuales, garantizando un equilibrio entre el bienestar del empleado y la continuidad operativa de la compañía.
+2. Devengo y Duración
+
+Todos los empleados de Acme Corp tienen derecho a un periodo de vacaciones anuales retribuidas, proporcional al tiempo de servicios prestados durante el año natural (de enero a diciembre).
+
+    Periodo Estándar: 25 días laborables por año completo (o lo estipulado por el convenio colectivo aplicable si este fuera superior).
+
+    Cómputo: Las vacaciones se devengan a razón de 2.08 días por mes trabajado.
+
+    Caducidad: Los días devengados en un año natural deben disfrutarse antes del 31 de marzo del año siguiente. Los días no disfrutados tras esa fecha se perderán sin compensación económica, salvo excepciones autorizadas por Dirección.
+
+3. Reglas de Solicitud y Calendario
+
+Para evitar cuellos de botella operativos, Acme Corp implementa un sistema de planificación anticipada.
+3.1. Plazos de Preaviso
+Duración de las Vacaciones	Antelación Mínima de Solicitud
+1 a 2 días	1 semana de antelación
+3 a 5 días	3 semanas de antelación
+Más de 5 días	2 meses de antelación
+3.2. Restricciones Operativas (Periodos de Bloqueo)
+
+Se establecen periodos de "Cierre de Objetivos" donde no se autorizarán vacaciones para departamentos específicos debido a picos de actividad:
+
+    Departamento Financiero: Última semana de cada trimestre y mes de enero completo.
+
+    Ventas y Operaciones: Periodo de Black Friday y última quincena de diciembre.
+
+    IT: Semanas de despliegue de infraestructura crítica (comunicadas con 3 meses de antelación).
+
+4. Prioridades y Concurrencia
+
+En caso de conflicto de fechas entre dos o más empleados del mismo equipo, se aplicarán los siguientes criterios de prioridad en orden descendente:
+
+    Cargas Familiares: Empleados con hijos en edad escolar (durante periodos de vacaciones escolares).
+
+    Antigüedad: Empleados con mayor tiempo de servicio en Acme Corp.
+
+    Rotación Histórica: Quien no disfrutó de prioridad el año anterior tendrá preferencia el presente año.
+
+5. Beneficios Adicionales
+
+Acme Corp incentiva la lealtad y el descanso de calidad mediante los siguientes beneficios extra-legales:
+5.1. Tabla de Días de Antigüedad
+Años en la Compañía	Días Adicionales de Vacaciones
+3 - 5 años	+1 día laborable / año
+5 - 10 años	+3 días laborables / año
+Más de 10 años	+5 días laborables / año
+5.2. Bono de "Desconexión Total"
+
+Si un empleado no registra ningún acceso a los sistemas corporativos (VPN, Slack, Email) durante un periodo de vacaciones superior a 10 días seguidos, recibirá un Bono de Bienestar de 100 € en su próxima nómina como reconocimiento a su higiene laboral.
+6. Régimen de Penalizaciones
+
+El incumplimiento de las normas de descanso y solicitud conlleva medidas disciplinarias para proteger la organización.
+6.1. Infracciones Específicas
+
+    Ausencia no autorizada: Tomar días de vacaciones sin la aprobación formal en el sistema AcmePeople.
+
+    Continuidad encubierta: Trabajar durante las vacaciones para "adelantar tareas" sin autorización de RRHH (vulnera el derecho al descanso y la normativa de salud laboral).
+
+    Falsedad en la justificación: Alegar causas de fuerza mayor para forzar vacaciones fuera de plazo.
+
+6.2. Cuadro de Sanciones
+Falta	Consecuencia
+No notificar con antelación	Denegación automática de la solicitud.
+Ausencia injustificada	Deducción salarial y falta grave en el expediente.
+Reincidencia en falta de preaviso	Suspensión de la elegibilidad para días adicionales por antigüedad por 1 año.
+7. Procedimiento de Aprobación
+
+    Registro: El empleado introduce las fechas en la herramienta AcmePeople.
+
+    Validación Técnica: El sistema verifica que el empleado tiene saldo de días suficiente.
+
+    Aprobación de Mánager: El responsable directo valida que el 60% del equipo permanece activo durante esas fechas.
+
+    Confirmación: El empleado recibe una notificación oficial. No se recomienda contratar viajes o servicios hasta recibir esta confirmación.
+
+8. Derecho a la Desconexión Digital
+
+Durante el periodo de vacaciones, queda terminantemente prohibido:
+
+    Contactar al empleado para asuntos no críticos.
+
+    Incluir al empleado en hilos de correo activos.
+
+    Asignar tareas con fecha de entrega coincidente con el primer día de reincorporación.
+
+9. Disposiciones Finales
+
+Cualquier situación no prevista en esta política será resuelta por el Comité de Dirección y el departamento de Recursos Humanos bajo criterios de equidad y necesidad de negocio.
+
+Fdo: Dirección de Recursos Humanos Acme Corp. "Tu descanso es nuestro motor."

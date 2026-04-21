@@ -1,0 +1,127 @@
+Política Corporativa de Teletrabajo: Protocolo Operativo y Normativo
+
+Entidad: Acme Corp.
+
+Departamento: Recursos Humanos / Operaciones
+
+Versión: 2.0 (Abril 2026)
+
+Clasificación: Confidencial / Uso Interno
+1. Introducción y Propósito
+
+La presente Política de Teletrabajo de Acme Corp establece el marco jurídico y administrativo que regula la prestación de servicios a distancia. El objetivo primordial es garantizar la continuidad operativa, el cumplimiento de los objetivos de negocio y la seguridad de la información, manteniendo la excelencia profesional que define a nuestra organización.
+
+El teletrabajo en Acme Corp no se considera un derecho adquirido, sino una modalidad de ejecución laboral sujeta al cumplimiento estricto de indicadores de rendimiento (KPIs) y a la idoneidad del puesto.
+2. Ámbito de Aplicación y Elegibilidad
+
+Esta política aplica a todos los empleados de Acme Corp con contrato vigente. No obstante, la elegibilidad se determinará bajo los siguientes criterios:
+
+    Antigüedad: Mínimo de seis (6) meses en la compañía.
+
+    Desempeño: Calificación mínima de "Excede Expectativas" en la última evaluación de desempeño.
+
+    Naturaleza del puesto: Funciones que no requieran presencia física obligatoria (ej. logística de almacén, recepción o mantenimiento técnico presencial).
+
+3. Régimen de Horarios y Disponibilidad
+
+Acme Corp mantiene una cultura de Disponibilidad Inmediata. El teletrabajo no implica flexibilidad horaria discrecional, sino el traslado del centro de trabajo al domicilio del empleado.
+3.1. Estructura de la Jornada
+
+Se establecen dos turnos fijos obligatorios. El empleado deberá fichar a través de la plataforma interna AcmeTime al inicio y cierre de cada bloque.
+Bloque	Horario	Estado Requerido
+Bloque Mañana	09:00 - 14:00	Conexión activa y respuesta en < 5 min
+Receso Almuerzo	14:00 - 15:00	Desconexión permitida
+Bloque Tarde	15:00 - 18:30	Conexión activa y respuesta en < 5 min
+3.2. Reglas Estrictas de Comunicación
+
+    Cámara Activa: Es obligatorio el uso de video en todas las reuniones de equipo. El fondo debe ser neutro o el corporativo de Acme Corp.
+
+    Estado del Chat: El indicador de presencia en Slack/Teams debe reflejar con exactitud la actividad real. Está estrictamente prohibido el uso de "mouse jigglers" o software de simulación de presencia.
+
+    Tiempos de Respuesta: Se espera respuesta a correos electrónicos urgentes en un máximo de 30 minutos.
+
+4. Equipamiento y Seguridad de la Información
+
+El empleado es responsable de mantener un entorno de trabajo profesional, libre de distracciones y con las medidas de seguridad digital exigidas por el Departamento de IT.
+4.1. Requisitos Técnicos Mínimos
+
+    Conexión a internet estable (mínimo 100 Mbps simétricos).
+
+    Uso exclusivo de la VPN de Acme Corp.
+
+    Prohibición de conectar dispositivos personales (USBs, smartphones ajenos) a los equipos de la empresa.
+
+5. Beneficios y Compensaciones
+
+Acme Corp reconoce que el teletrabajo conlleva gastos operativos que deben ser mitigados para asegurar el bienestar del colaborador.
+5.1. Tabla de Compensación Económica
+Concepto	Montante Mensual	Observaciones
+Bono de Conectividad	45.00 €	Cubre prorrateo de internet y electricidad.
+Subvención de Ergonomía	Hasta 250.00 €	Pago único para silla ergonómica o monitor (con factura).
+Ticket Restaurante Digital	9.00 € / día	Canjeable en establecimientos asociados.
+5.2. Programa de Bienestar "AcmeHome"
+
+    Acceso a licencias premium de aplicaciones de meditación y enfoque.
+
+    Sesiones de fisioterapia preventiva trimestrales (reembolsables).
+
+    Derecho a la desconexión digital: No se enviarán comunicaciones entre las 19:00 y las 08:30, salvo emergencia crítica nacional.
+
+6. Código de Conducta y Régimen de Penalizaciones
+
+El incumplimiento de las normas establecidas en este documento será motivo de sanción disciplinaria, de acuerdo con la gravedad de la falta y lo estipulado en el convenio colectivo aplicable.
+6.1. Clasificación de Faltas
+
+A. Faltas Leves:
+
+    No actualizar el estado de disponibilidad más de tres veces al mes.
+
+    No acudir a una reunión virtual sin previo aviso.
+
+    Uso de vestimenta no profesional durante videollamadas.
+
+B. Faltas Graves:
+
+    Reincidencia en faltas leves.
+
+    Incumplimiento de los tiempos de respuesta de forma sistemática.
+
+    Realizar tareas domésticas o de cuidado de terceros durante el horario laboral estipulado.
+
+C. Faltas Muy Graves:
+
+    Compartir credenciales de acceso o VPN con personas ajenas a la empresa.
+
+    Trabajar desde una ubicación no autorizada (fuera del país o en redes públicas) sin permiso de RRHH.
+
+    Falsificación de registros de jornada.
+
+6.2. Cuadro de Sanciones
+
+    "La disciplina es el puente entre las metas y los logros de Acme Corp."
+
+Gravedad	Sanción Aplicable	Impacto en Teletrabajo
+Leve	Amonestación por escrito.	Suspensión de teletrabajo por 1 semana.
+Grave	Suspensión de empleo y sueldo (2-4 días).	Revocación del teletrabajo por 3 meses.
+Muy Grave	Suspensión de empleo y sueldo (10-20 días) o despido.	Revocación definitiva de la modalidad.
+7. Salud Laboral y Ergonomía
+
+El teletrabajador debe completar obligatoriamente el curso de "Prevención de Riesgos en el Hogar" antes de iniciar su primera jornada a distancia. Acme Corp se reserva el derecho de solicitar una autoevaluación fotográfica del puesto de trabajo para asegurar que cumple con los estándares de iluminación y postura.
+8. Procedimiento de Solicitud
+
+    Petición: El empleado envía el formulario Form-TW-01 a su mánager directo.
+
+    Evaluación: El mánager analiza los KPIs de los últimos 3 meses.
+
+    Aprobación: RRHH emite el anexo contractual de teletrabajo.
+
+    Auditoría: IT realiza la configuración remota de los equipos de seguridad.
+
+9. Cláusula de Reversibilidad
+
+Tanto la empresa como el trabajador podrán solicitar el regreso a la modalidad presencial con un preaviso de quince (15) días naturales. Acme Corp se reserva el derecho de exigir la presencialidad inmediata en situaciones de crisis operativa, auditorías externas o caída de los objetivos de departamento.
+10. Aceptación y Firma
+
+Al conectarse a la red corporativa desde su domicilio, el empleado declara haber leído, comprendido y aceptado todos los términos de esta Política de Teletrabajo de Acme Corp.
+
+Fdo: Dirección de Recursos Humanos Acme Corp. "Innovación desde cualquier lugar, compromiso desde el primer clic."
